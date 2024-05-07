@@ -1,7 +1,3 @@
-<script setup>
-
-</script>
-
 <template>
     <div class="flex">
         <ul>
@@ -14,6 +10,10 @@
         </ul>
     </div>
 </template>
+
+<script setup>
+
+</script>
 
 <style scoped>
     ul {

@@ -1,7 +1,7 @@
 <template>
     <button class="flex-1 bg-cyan-300 rounded-lg">Ajouter à l'équipe</button>
-  </template>
+</template>
   
-  <script setup>
+<script setup>
   
-  </script>
+</script>

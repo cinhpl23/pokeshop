@@ -1,45 +1,3 @@
-<script setup>
-import { ref, onMounted, computed } from 'vue'
-import Header from './components/Header.vue'
-import ItemCard from './components/Item/Card.vue'
-import Sidebar from './components/Sidebar.vue';
-
-const items = ref([])
-const team = ref([])
-const filter = ref('')
-
-async function fetchItems() {
-  try {
-    const itemsRawData = await fetch('https://pokebuildapi.fr/api/v1/pokemon/limit/100')
-    const itemsJson = await itemsRawData.json()
-    items.value = itemsJson
-  } catch (error) {
-    console.error(error, 'Une erreur est survenue lors du chargement de la page')
-  }
-
-}
-onMounted(async () => {
-    fetchItems()
-})
-
-function pushToTeam(item) {
-  team.value.push(item)
-}
-
-function assignFilter(types) {
-  filter.value = types
-}
-
-const itemsByTypes = computed(() => {
-  if (filter.value === '') {
-    return items.value
-  } else {
-    return items.value.filter((item) => item.types === filter.value)
-  }
-}) 
-
-</script>
-
 <template>
   <div class="min-h-screen ">
     <Navbar />
@@ -60,5 +18,50 @@ const itemsByTypes = computed(() => {
     </main>
   </div>
 </template>
+
+<script setup>
+import { ref, onMounted, computed } from 'vue'
+import Header from './components/Header.vue'
+import ItemCard from './components/Item/Card.vue'
+import Sidebar from './components/Sidebar.vue';
+
+const items = ref([])
+const team = ref([])
+const filter = ref('')
+
+// get data from API
+async function fetchItems() {
+  try {
+    const itemsRawData = await fetch('https://pokebuildapi.fr/api/v1/pokemon/limit/100')
+    const itemsJson = await itemsRawData.json()
+    items.value = itemsJson
+  } catch (error) {
+    console.error(error, 'Une erreur est survenue lors du chargement de la page')
+  }
+
+}
+onMounted(async () => {
+    fetchItems()
+})
+
+// function add item to team, not functional yet
+function pushToTeam(item) {
+  team.value.push(item)
+}
+
+// filter by types of items
+function assignFilter(types) {
+  filter.value = types
+}
+
+const itemsByTypes = computed(() => {
+  if (filter.value === '') {
+    return items.value
+  } else {
+    return items.value.filter((item) => item.types === filter.value)
+  }
+}) 
+
+</script>
 
 <style scoped></style>

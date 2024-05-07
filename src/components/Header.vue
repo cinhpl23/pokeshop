@@ -1,12 +1,12 @@
-<script setup>
-import NavBar from './NavBar.vue';
-</script>
-
 <template>
     <header class="bg-primary-600 flex justify-between items-center">
         <NavBar />
     </header>
 </template>
+
+<script setup>
+import NavBar from './NavBar.vue';
+</script>
 
 <style scoped>
 header {
